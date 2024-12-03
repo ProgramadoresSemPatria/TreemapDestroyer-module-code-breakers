@@ -1,5 +1,7 @@
+import { Treemap } from "./components/Treemap";
+
 function App() {
-  return <div>App</div>;
+  return <Treemap />;
 }
 
 export default App;
