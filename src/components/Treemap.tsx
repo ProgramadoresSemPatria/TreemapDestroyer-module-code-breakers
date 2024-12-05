@@ -2,6 +2,7 @@ import {
   applyNodeChanges,
   Background,
   BackgroundVariant,
+  ControlButton,
   Controls,
   Edge,
   Node,
@@ -10,7 +11,6 @@ import {
   ReactFlow,
 } from "@xyflow/react";
 
-import "@xyflow/react/dist/style.css";
 import { initialNodes } from "../constants/initialNodes";
 import { defaultEdgeOptions, initialEdges } from "../constants/initialEdges";
 import { ProgressNode } from "./ProgressNode";
@@ -40,7 +40,9 @@ export function Treemap() {
         fitView
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-        <Controls showInteractive={false} />
+        <Controls showInteractive={false} className="w-10 gap-3 shadow-none">
+          <ControlButton className="!h-52"></ControlButton>
+        </Controls>
       </ReactFlow>
     </div>
   );
