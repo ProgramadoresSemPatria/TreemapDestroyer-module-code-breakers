@@ -1,8 +1,8 @@
 import { exercises } from "../constants/exercises";
-import { useDoneExercicesStore } from "../stores/useDoneExercicesStore";
+import { useDoneExerciceStore } from "../stores/useDoneExerciseStore";
 
 export function TotalProgressBar() {
-  const { doneExercisesId } = useDoneExercicesStore();
+  const { doneExercisesId } = useDoneExerciceStore();
   const doneExercicesPercentage =
     (doneExercisesId.length / exercises.length) * 100;
 

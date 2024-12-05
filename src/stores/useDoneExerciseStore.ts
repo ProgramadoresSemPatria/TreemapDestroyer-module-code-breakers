@@ -1,15 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface IDoneExercicesStore {
+interface IDoneExerciseStore {
   doneExercisesId: string[];
 }
 
-const initialState: IDoneExercicesStore = {
+const initialState: IDoneExerciseStore = {
   doneExercisesId: [],
 };
 
-export const useDoneExercicesStore = create<IDoneExercicesStore>()(
+export const useDoneExerciceStore = create<IDoneExerciseStore>()(
   persist(() => initialState, {
     name: "done-exercises-store",
   })
