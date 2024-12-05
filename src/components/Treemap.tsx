@@ -15,6 +15,7 @@ import { initialNodes } from "../constants/initialNodes";
 import { defaultEdgeOptions, initialEdges } from "../constants/initialEdges";
 import { ProgressNode } from "./ProgressNode";
 import { useCallback, useState } from "react";
+import { TotalProgressBar } from "./TotalProgressBar";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
@@ -41,7 +42,9 @@ export function Treemap() {
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         <Controls showInteractive={false} className="w-10 gap-3 shadow-none">
-          <ControlButton className="!h-52"></ControlButton>
+          <ControlButton className="!h-52">
+            <TotalProgressBar />
+          </ControlButton>
         </Controls>
       </ReactFlow>
     </div>
