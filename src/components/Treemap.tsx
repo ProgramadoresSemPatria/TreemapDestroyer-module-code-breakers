@@ -2,12 +2,11 @@ import {
   applyNodeChanges,
   Background,
   BackgroundVariant,
-  ControlButton,
-  Controls,
   Edge,
   Node,
   NodeTypes,
   OnNodesChange,
+  Panel,
   ReactFlow,
 } from "@xyflow/react";
 
@@ -15,7 +14,7 @@ import { initialNodes } from "../constants/initialNodes";
 import { defaultEdgeOptions, initialEdges } from "../constants/initialEdges";
 import { ProgressNode } from "./ProgressNode";
 import { useCallback, useState } from "react";
-import { TotalProgressBar } from "./TotalProgressBar";
+import { Buttons } from "./Buttons";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
@@ -41,11 +40,9 @@ export function Treemap() {
         fitView
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-        <Controls showInteractive={false} className="w-10 gap-3 shadow-none">
-          <ControlButton className="!h-52">
-            <TotalProgressBar />
-          </ControlButton>
-        </Controls>
+        <Panel position="bottom-left">
+          <Buttons />
+        </Panel>
       </ReactFlow>
     </div>
   );
