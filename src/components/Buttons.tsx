@@ -1,35 +1,18 @@
-import { useReactFlow, useStoreApi } from "@xyflow/react";
+import { useReactFlow } from "@xyflow/react";
 import { exercises } from "../constants/exercises";
 import { useDoneExerciceStore } from "../stores/useDoneExerciseStore";
 import { Maximize, Minus, Plus } from "lucide-react";
 import { ButtonTooltipWrapper } from "./ButtonTooltipWrapper";
 
 export function Buttons() {
-  const store = useStoreApi();
-  const { zoomIn, zoomOut, setCenter } = useReactFlow();
+  const { zoomIn, zoomOut, fitView } = useReactFlow();
   const { doneExercisesId } = useDoneExerciceStore();
   const doneExercicesPercentage =
     (doneExercisesId.length / exercises.length) * 100;
 
-  const focusNode = () => {
-    const { nodeLookup } = store.getState();
-    const nodes = Array.from(nodeLookup).map(([, node]) => node);
-
-    if (nodes.length > 0) {
-      const node = nodes[0];
-
-      const x = node.position.x + (node.measured.width ?? 0) / 2;
-      const y = node.position.y + (node.measured.height ?? 0) / 2;
-      const zoom = 1.85;
-
-      setCenter(x, y, { zoom, duration: 1000 });
-    }
-  };
-
   return (
     <div className="flex flex-col gap-3 w-10">
       <ButtonTooltipWrapper
-        animationDelay={0}
         tooltipContent={"Zoom in"}
         onClick={() => zoomIn({ duration: 300 })}
       >
@@ -47,7 +30,7 @@ export function Buttons() {
       <ButtonTooltipWrapper
         animationDelay={200}
         tooltipContent={"Center nodes"}
-        onClick={focusNode}
+        onClick={() => fitView({ duration: 1000 })}
       >
         <Maximize className="size-4" />
       </ButtonTooltipWrapper>

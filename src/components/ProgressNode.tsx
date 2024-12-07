@@ -2,14 +2,20 @@ import { Handle, Node, NodeProps, Position } from "@xyflow/react";
 
 type ProgressNode = Node<{ label: string }>;
 
-export function ProgressNode({ id, data }: NodeProps<ProgressNode>) {
-  console.log(id);
-
+export function ProgressNode({ data }: NodeProps<ProgressNode>) {
   return (
-    <button className="flex items-center justify-center w-56 py-4 bg-blue-500">
-      <Handle type="target" position={Position.Top} />
+    <button className="flex items-center justify-center rounded-md w-56 py-4 bg-[#874EF9] text-white">
+      <Handle
+        type="target"
+        position={Position.Top}
+        className="bg-transparent border-0"
+      />
       {data.label}
-      <Handle type="source" position={Position.Bottom} />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        className="bg-transparent border-0"
+      />
     </button>
   );
 }

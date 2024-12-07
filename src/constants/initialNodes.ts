@@ -1,22 +1,114 @@
 import { Node } from "@xyflow/react";
 
+const position = { x: 0, y: 0 };
+
 export const initialNodes: Node[] = [
   {
-    id: "599ed3e5-d3b5-5b18-a81b-366e78676d85",
+    id: "1",
+    position,
+    data: { label: "Arrays & Hashing" },
     type: "progressNode",
-    position: { x: 0, y: 0 },
-    data: { label: "Arrays and Hashing" },
   },
   {
-    id: "a99811b0-ce3a-5d10-916d-8ea8872dd09d",
-    type: "progressNode",
-    position: { x: -150, y: 100 },
+    id: "2",
+    position,
     data: { label: "Two Pointers" },
+    type: "progressNode",
   },
   {
-    id: "8032f5e5-c322-5ef5-a017-9ee7c38df600",
-    type: "progressNode",
-    position: { x: 150, y: 100 },
+    id: "3",
+    position,
     data: { label: "Stack" },
+    type: "progressNode",
+  },
+  {
+    id: "4",
+    position,
+    data: { label: "Binary Search" },
+    type: "progressNode",
+  },
+  {
+    id: "5",
+    position,
+    data: { label: "Sliding Window" },
+    type: "progressNode",
+  },
+  {
+    id: "6",
+    position,
+    data: { label: "Linked List" },
+    type: "progressNode",
+  },
+  {
+    id: "7",
+    position,
+    data: { label: "Trees" },
+    type: "progressNode",
+  },
+  {
+    id: "8",
+    position,
+    data: { label: "Tries" },
+    type: "progressNode",
+  },
+  {
+    id: "9",
+    position,
+    data: { label: "Backtracking" },
+    type: "progressNode",
+  },
+  {
+    id: "10",
+    position,
+    data: { label: "Heap/ Priority Queue" },
+    type: "progressNode",
+  },
+  {
+    id: "11",
+    position,
+    data: { label: "Graphs" },
+    type: "progressNode",
+  },
+  {
+    id: "12",
+    position,
+    data: { label: "1-D DP" },
+    type: "progressNode",
+  },
+  {
+    id: "13",
+    position,
+    data: { label: "Intervals" },
+    type: "progressNode",
+  },
+  {
+    id: "14",
+    position,
+    data: { label: "Greedy" },
+    type: "progressNode",
+  },
+  {
+    id: "15",
+    position,
+    data: { label: "Advanced Graphs" },
+    type: "progressNode",
+  },
+  {
+    id: "16",
+    position,
+    data: { label: "2-D DP" },
+    type: "progressNode",
+  },
+  {
+    id: "17",
+    position,
+    data: { label: "Bit Manipulation" },
+    type: "progressNode",
+  },
+  {
+    id: "18",
+    position,
+    data: { label: "Math & Geometry" },
+    type: "progressNode",
   },
 ];
