@@ -1,8 +1,8 @@
 import { useReactFlow, useStoreApi } from "@xyflow/react";
 import { exercises } from "../constants/exercises";
 import { useDoneExerciceStore } from "../stores/useDoneExerciseStore";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Maximize, Minus, Plus } from "lucide-react";
+import { ButtonTooltipWrapper } from "./ButtonTooltipWrapper";
 
 export function Buttons() {
   const store = useStoreApi();
@@ -28,96 +28,43 @@ export function Buttons() {
 
   return (
     <div className="flex flex-col gap-3 w-10">
-      <Tooltip>
-        <TooltipTrigger>
-          <button
-            className="animate-left-to-right flex justify-center items-center w-full aspect-square rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)]"
-            onClick={(e) => {
-              e.preventDefault();
-              zoomIn({ duration: 300 });
-            }}
-          >
-            <Plus className="size-4" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent
-          sideOffset={8}
-          side="right"
-          onPointerDownOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Zoom in
-        </TooltipContent>
-      </Tooltip>
+      <ButtonTooltipWrapper
+        animationDelay={0}
+        tooltipContent={"Zoom in"}
+        onClick={() => zoomIn({ duration: 300 })}
+      >
+        <Plus className="size-4" />
+      </ButtonTooltipWrapper>
 
-      <Tooltip>
-        <TooltipTrigger>
-          <button
-            className="animate-left-to-right delay-75 flex justify-center items-center w-full aspect-square rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)]"
-            onClick={(e) => {
-              e.preventDefault();
-              zoomOut({ duration: 300 });
-            }}
-          >
-            <Minus className="size-4" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent
-          sideOffset={8}
-          side="right"
-          onPointerDownOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Zoom out
-        </TooltipContent>
-      </Tooltip>
+      <ButtonTooltipWrapper
+        animationDelay={100}
+        tooltipContent={"Zoom out"}
+        onClick={() => zoomOut({ duration: 300 })}
+      >
+        <Minus className="size-4" />
+      </ButtonTooltipWrapper>
 
-      <Tooltip>
-        <TooltipTrigger>
-          <button
-            className="animate-left-to-right delay-150 flex justify-center items-center w-full aspect-square rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)]"
-            onClick={(e) => {
-              e.preventDefault();
-              focusNode();
-            }}
-          >
-            <Maximize className="size-4" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent
-          sideOffset={8}
-          side="right"
-          onPointerDownOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Center nodes
-        </TooltipContent>
-      </Tooltip>
+      <ButtonTooltipWrapper
+        animationDelay={200}
+        tooltipContent={"Center nodes"}
+        onClick={focusNode}
+      >
+        <Maximize className="size-4" />
+      </ButtonTooltipWrapper>
 
-      <Tooltip>
-        <TooltipTrigger onClick={(e) => e.preventDefault()}>
-          <div className="animate-left-to-right delay-300 w-full h-52 rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)] p-1">
-            <div className="flex items-end w-full h-full bg-[#5316cc1a] rounded-sm">
-              <div
-                className="w-full rounded-sm bg-[#32EEB4] transition-[height] duration-500"
-                style={{ height: `${doneExercicesPercentage}%` }}
-              />
-            </div>
+      <ButtonTooltipWrapper
+        animationDelay={300}
+        tooltipContent={`${doneExercisesId.length}/${exercises.length}`}
+      >
+        <div className="w-full h-52 rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)] p-1 cursor-default">
+          <div className="flex items-end w-full h-full bg-[#5316cc1a] rounded-sm">
+            <div
+              className="w-full rounded-sm bg-[#32EEB4] transition-[height] duration-500"
+              style={{ height: `${doneExercicesPercentage}%` }}
+            />
           </div>
-        </TooltipTrigger>
-        <TooltipContent
-          sideOffset={8}
-          side="right"
-          onPointerDownOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          {doneExercisesId.length}/{exercises.length}
-        </TooltipContent>
-      </Tooltip>
+        </div>
+      </ButtonTooltipWrapper>
     </div>
   );
 }
