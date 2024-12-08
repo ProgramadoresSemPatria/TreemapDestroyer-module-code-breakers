@@ -23,8 +23,7 @@ const nodeTypes: NodeTypes = {
 
 const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
   initialNodes,
-  initialEdges,
-  "vertical"
+  initialEdges
 );
 
 export function Treemap() {

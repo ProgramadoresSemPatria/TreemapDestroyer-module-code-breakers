@@ -7,8 +7,8 @@ import { ButtonTooltipWrapper } from "./ButtonTooltipWrapper";
 export function Buttons() {
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const { doneExercisesId } = useDoneExerciceStore();
-  const doneExercicesPercentage =
-    (doneExercisesId.length / exercises.length) * 100;
+  const doneExercisesQty = Object.keys(doneExercisesId ?? {}).length;
+  const doneExercicesPercentage = (doneExercisesQty / exercises.length) * 100;
 
   return (
     <div className="flex flex-col gap-3 w-10">
@@ -37,7 +37,7 @@ export function Buttons() {
 
       <ButtonTooltipWrapper
         animationDelay={300}
-        tooltipContent={`${doneExercisesId.length}/${exercises.length}`}
+        tooltipContent={`${doneExercisesQty}/${exercises.length}`}
       >
         <div className="w-full h-52 rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)] p-1 cursor-default">
           <div className="flex items-end w-full h-full bg-[#5316cc1a] rounded-sm">

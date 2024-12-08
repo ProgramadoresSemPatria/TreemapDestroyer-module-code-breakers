@@ -1,10 +1,10 @@
-type TDificulty = "Easy" | "Medium" | "Hard";
+export type TDifficulty = "Easy" | "Medium" | "Hard";
 
 export interface IExercise {
   id: string;
   nodeId: string;
   problem: string;
   link: string;
-  dificulty: TDificulty;
+  difficulty: TDifficulty;
   solution: string;
 }

@@ -18,8 +18,6 @@ export function ButtonTooltipWrapper({
   animationDelay = 0,
   onClick,
 }: TooltipWrapperProps) {
-  console.log("renderizei");
-
   return (
     <Tooltip>
       <TooltipTrigger>
