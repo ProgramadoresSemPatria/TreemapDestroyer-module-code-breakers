@@ -1,4 +1,3 @@
-import { exercises as allExercises } from "@/constants/exercises";
 import {
   Table,
   TableBody,
@@ -8,11 +7,11 @@ import {
   TableRow,
 } from "./ui/table";
 import { MonitorPlay } from "lucide-react";
-import { TDifficulty } from "@/types/IExercise";
+import { IExercise, TDifficulty } from "@/types/IExercise";
 import { useDoneExerciceStore } from "@/stores/useDoneExerciseStore";
 
 interface ExercisesTableProps {
-  nodeId: string;
+  exercises: IExercise[];
 }
 
 const difficultyColors: Record<TDifficulty, string> = {
@@ -21,11 +20,8 @@ const difficultyColors: Record<TDifficulty, string> = {
   Hard: "red",
 };
 
-export function ExercisesTable({ nodeId }: ExercisesTableProps) {
+export function ExercisesTable({ exercises }: ExercisesTableProps) {
   const { doneExercisesId } = useDoneExerciceStore();
-  const exercises = allExercises.filter(
-    (exercise) => exercise.nodeId === nodeId
-  );
 
   const changeStatus = (exerciseId: string) => {
     const isExerciseDone = doneExercisesId?.[exerciseId] || false;

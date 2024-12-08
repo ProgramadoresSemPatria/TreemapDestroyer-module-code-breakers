@@ -59,7 +59,7 @@ export function ProgressNode({ data }: NodeProps<ProgressNode>) {
             </div>
           </DialogDescription>
         </DialogHeader>
-        <ExercisesTable nodeId={data.id} />
+        <ExercisesTable exercises={exercises} />
       </DialogContent>
     </Dialog>
   );
