@@ -6,17 +6,19 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { MonitorPlay } from "lucide-react";
+import { ExternalLink, MonitorPlay } from "lucide-react";
 import { IExercise, TDifficulty } from "@/types/IExercise";
 import { useDoneExerciceStore } from "@/stores/useDoneExerciseStore";
+import { Checkbox } from "./ui/checkbox";
+import clsx from "clsx";
 
 interface ExercisesTableProps {
   exercises: IExercise[];
 }
 
 const difficultyColors: Record<TDifficulty, string> = {
-  Easy: "green",
-  Medium: "#c39310",
+  Easy: "#19b181",
+  Medium: "#dfb339",
   Hard: "red",
 };
 
@@ -53,25 +55,34 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Status</TableHead>
+          <TableHead className="text-center">Status</TableHead>
           <TableHead>Problem</TableHead>
           <TableHead>Difficulty</TableHead>
-          <TableHead>Solution</TableHead>
+          <TableHead className="text-center">Solution</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {exercises.map((exercise) => (
-          <TableRow key={exercise.id}>
-            <TableCell>
-              <input
-                checked={doneExercisesId?.[exercise.id] || false}
-                type="checkbox"
-                onChange={() => changeStatus(exercise.id)}
-              />
+          <TableRow
+            key={exercise.id}
+            className={clsx("hover:bg-gray-100 transition-colors")}
+          >
+            <TableCell className="flex justify-center items-center">
+              <div>
+                <Checkbox
+                  checked={doneExercisesId?.[exercise.id] || false}
+                  onChange={() => changeStatus(exercise.id)}
+                />
+              </div>
             </TableCell>
             <TableCell>
-              <a target="_blank'" href={exercise.link}>
+              <a
+                className="flex items-center gap-2"
+                target="_blank'"
+                href={exercise.link}
+              >
                 {exercise.problem}
+                <ExternalLink color="#5316CC" size={16} />
               </a>
             </TableCell>
             <TableCell style={{ color: difficultyColors[exercise.difficulty] }}>
@@ -79,7 +90,7 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             </TableCell>
             <TableCell className="flex items-center justify-center">
               <a target="_blank" href={exercise.solution}>
-                <MonitorPlay color="#3f3e3e" strokeWidth={1.2} />
+                <MonitorPlay strokeWidth={1.2} />
               </a>
             </TableCell>
           </TableRow>
