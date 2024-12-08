@@ -16,6 +16,7 @@ import { ProgressNode } from "./ProgressNode";
 import { useCallback, useState } from "react";
 import { Buttons } from "./Buttons";
 import { getLayoutedElements } from "@/utils/getLayoutedElements";
+import { Preferences } from "./Preferences";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
@@ -48,6 +49,9 @@ export function Treemap() {
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         <Panel position="bottom-left">
           <Buttons />
+        </Panel>
+        <Panel position="top-left">
+          <Preferences />
         </Panel>
       </ReactFlow>
     </div>
