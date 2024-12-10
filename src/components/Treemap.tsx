@@ -19,6 +19,7 @@ import { Buttons } from "./Buttons";
 import { getLayoutedElements } from "@/utils/getLayoutedElements";
 import { Preferences } from "./Preferences";
 import { useSettingsStore } from "@/stores/useSettingsStore";
+import { SlidingTabBar } from "./SlidingTabs";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
@@ -71,6 +72,9 @@ export function Treemap() {
         </Panel>
         <Panel position="top-left">
           <Preferences />
+        </Panel>
+        <Panel position="bottom-right">
+          <SlidingTabBar />
         </Panel>
       </ReactFlow>
     </div>
