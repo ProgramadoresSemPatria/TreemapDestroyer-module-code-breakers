@@ -5,6 +5,10 @@ type Theme = "dark" | "light" | "system";
 
 interface ISettingsStore {
   theme: Theme;
+  isDraggable: boolean;
+  enableZooming: boolean;
+  panOnDrag: boolean;
+
   setTheme: (theme: Theme) => void;
 }
 
@@ -13,6 +17,10 @@ export const useSettingsStore = create<ISettingsStore>()(
     (set) =>
       ({
         theme: "light",
+        isDraggable: false,
+        enableZooming: true,
+        panOnDrag: true,
+
         setTheme: (theme: Theme) => {
           const root = window.document.documentElement;
           root.classList.remove("light", "dark");

@@ -30,9 +30,9 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
 );
 
 export function Treemap() {
+  const { theme, isDraggable, enableZooming, panOnDrag } = useSettingsStore();
   const [nodes, setNodes] = useState<Node[]>(layoutedNodes);
   const [edges] = useState<Edge[]>(layoutedEdges);
-  const theme = useSettingsStore((store) => store.theme);
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nodes) => applyNodeChanges(changes, nodes)),
@@ -58,6 +58,11 @@ export function Treemap() {
           type: "smoothstep",
         }}
         colorMode={theme}
+        nodesDraggable={isDraggable}
+        zoomOnScroll={enableZooming}
+        zoomOnDoubleClick={enableZooming}
+        zoomOnPinch={enableZooming}
+        panOnDrag={panOnDrag}
         fitView
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />

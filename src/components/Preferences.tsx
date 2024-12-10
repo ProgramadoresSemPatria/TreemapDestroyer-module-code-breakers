@@ -14,8 +14,8 @@ import {
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
 export function Preferences() {
-  const theme = useSettingsStore((state) => state.theme);
-  const setTheme = useSettingsStore((state) => state.setTheme);
+  const { isDraggable, enableZooming, panOnDrag, setTheme, theme } =
+    useSettingsStore();
 
   return (
     <Menubar className="animate-left-to-right h-fit dark:bg-[#2c2c2c] dark:shadow-[0_0_50px_rgba(0,0,0,1)] shadow-[0_0_50px_rgba(0,0,0,0.25)]">
@@ -49,11 +49,27 @@ export function Preferences() {
             </MenubarSubContent>
           </MenubarSub>
           <MenubarSeparator className="dark:bg-[#444444]" />
-          <MenubarCheckboxItem checked={false}>
+          <MenubarCheckboxItem
+            checked={isDraggable}
+            onClick={() =>
+              useSettingsStore.setState({ isDraggable: !isDraggable })
+            }
+          >
             Enable dragging
           </MenubarCheckboxItem>
-          <MenubarCheckboxItem checked={false}>
+          <MenubarCheckboxItem
+            checked={enableZooming}
+            onClick={() =>
+              useSettingsStore.setState({ enableZooming: !enableZooming })
+            }
+          >
             Enable zooming
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem
+            checked={panOnDrag}
+            onClick={() => useSettingsStore.setState({ panOnDrag: !panOnDrag })}
+          >
+            Enable panning
           </MenubarCheckboxItem>
         </MenubarContent>
       </MenubarMenu>
