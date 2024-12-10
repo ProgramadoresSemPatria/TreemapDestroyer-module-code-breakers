@@ -16,7 +16,7 @@ export function Buttons() {
         tooltipContent={"Zoom in"}
         onClick={() => zoomIn({ duration: 300 })}
       >
-        <Plus className="size-4" />
+        <Plus className="size-4 dark:text-white" />
       </ButtonTooltipWrapper>
 
       <ButtonTooltipWrapper
@@ -24,7 +24,7 @@ export function Buttons() {
         tooltipContent={"Zoom out"}
         onClick={() => zoomOut({ duration: 300 })}
       >
-        <Minus className="size-4" />
+        <Minus className="size-4 dark:text-white" />
       </ButtonTooltipWrapper>
 
       <ButtonTooltipWrapper
@@ -32,15 +32,15 @@ export function Buttons() {
         tooltipContent={"Center nodes"}
         onClick={() => fitView({ duration: 1000 })}
       >
-        <Maximize className="size-4" />
+        <Maximize className="size-4 dark:text-white" />
       </ButtonTooltipWrapper>
 
       <ButtonTooltipWrapper
         animationDelay={300}
         tooltipContent={`${doneExercisesQty}/${exercises.length}`}
       >
-        <div className="w-full h-52 rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)] p-1 cursor-default">
-          <div className="flex items-end w-full h-full bg-[#5316cc1a] rounded-sm">
+        <div className="w-full h-52 rounded-[0.25rem] bg-white dark:bg-[#2c2c2c] shadow-[0_0_50px_rgba(0,0,0,0.25)] p-1 cursor-default">
+          <div className="flex items-end w-full h-full bg-[#5316cc1a] dark:bg-[#503f70] rounded-sm">
             <div
               className="w-full rounded-sm bg-[#32EEB4] transition-[height] duration-500"
               style={{ height: `${doneExercicesPercentage}%` }}

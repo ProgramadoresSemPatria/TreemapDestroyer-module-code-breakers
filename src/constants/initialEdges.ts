@@ -1,15 +1,4 @@
-import { DefaultEdgeOptions, Edge, MarkerType } from "@xyflow/react";
-
-export const defaultEdgeOptions: DefaultEdgeOptions = {
-  animated: true,
-  markerEnd: {
-    type: MarkerType.ArrowClosed,
-  },
-  style: {
-    strokeWidth: 2,
-  },
-  type: "smoothstep",
-};
+import { Edge } from "@xyflow/react";
 
 export const initialEdges: Edge[] = [
   {

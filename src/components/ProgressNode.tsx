@@ -47,11 +47,13 @@ export function ProgressNode({ data }: NodeProps<ProgressNode>) {
           />
         </button>
       </DialogTrigger>
-      <DialogContent className="min-w-fit max-w-[90vw] max-h-[90vh] overflow-y-auto lg:w-[50rem]">
+      <DialogContent className="min-w-fit max-w-[90vw] max-h-[90vh] overflow-y-auto lg:w-[50rem] dark:bg-[#242424]">
         <DialogHeader className="gap-2">
-          <DialogTitle>{data.label}</DialogTitle>
+          <DialogTitle className="dark:text-[#F5F5F5]">
+            {data.label}
+          </DialogTitle>
           <DialogDescription>
-            <div className="w-full h-2 bg-[#EFEAFA] rounded-sm overflow-hidden">
+            <div className="w-full h-2 bg-[#EFEAFA] dark:bg-[#efeafa4b] rounded-sm overflow-hidden">
               <div
                 style={{ width: `${doneExercisesPercentage}%` }}
                 className="h-full bg-[#32EEB4] transition-[width] duration-500"

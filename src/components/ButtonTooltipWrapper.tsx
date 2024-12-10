@@ -23,7 +23,7 @@ export function ButtonTooltipWrapper({
       <TooltipTrigger>
         <button
           style={{ animationDelay: `${animationDelay}ms` }}
-          className="animate-left-to-right flex justify-center items-center w-full aspect-square rounded-[0.25rem] bg-white shadow-[0_0_50px_rgba(0,0,0,0.25)]"
+          className="animate-left-to-right flex justify-center items-center w-full aspect-square rounded-[0.25rem] bg-white dark:bg-[#2c2c2c] dark:shadow-[0_0_50px_rgba(0,0,0,1)] shadow-[0_0_50px_rgba(0,0,0,0.25)]"
           onClick={(e) => {
             e.preventDefault();
             if (!onClick) return;

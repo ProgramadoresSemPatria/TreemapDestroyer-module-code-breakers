@@ -3,6 +3,7 @@ import {
   Background,
   BackgroundVariant,
   Edge,
+  MarkerType,
   Node,
   NodeTypes,
   OnNodesChange,
@@ -11,12 +12,13 @@ import {
 } from "@xyflow/react";
 
 import { initialNodes } from "../constants/initialNodes";
-import { defaultEdgeOptions, initialEdges } from "../constants/initialEdges";
+import { initialEdges } from "../constants/initialEdges";
 import { ProgressNode } from "./ProgressNode";
 import { useCallback, useState } from "react";
 import { Buttons } from "./Buttons";
 import { getLayoutedElements } from "@/utils/getLayoutedElements";
 import { Preferences } from "./Preferences";
+import { useSettingsStore } from "@/stores/useSettingsStore";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
@@ -30,6 +32,7 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
 export function Treemap() {
   const [nodes, setNodes] = useState<Node[]>(layoutedNodes);
   const [edges] = useState<Edge[]>(layoutedEdges);
+  const theme = useSettingsStore((store) => store.theme);
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nodes) => applyNodeChanges(changes, nodes)),
@@ -43,7 +46,18 @@ export function Treemap() {
         nodeTypes={nodeTypes}
         onNodesChange={onNodesChange}
         edges={edges}
-        defaultEdgeOptions={defaultEdgeOptions}
+        defaultEdgeOptions={{
+          animated: true,
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+          },
+          style: {
+            strokeWidth: 2,
+            stroke: theme === "dark" ? "#979797" : "",
+          },
+          type: "smoothstep",
+        }}
+        colorMode={theme}
         fitView
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />

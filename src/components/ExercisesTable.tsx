@@ -77,12 +77,15 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             </TableCell>
             <TableCell>
               <a
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 dark:text-[#F5F5F5]"
                 target="_blank'"
                 href={exercise.link}
               >
                 {exercise.problem}
-                <ExternalLink color="#5316CC" size={16} />
+                <ExternalLink
+                  className="text-[#5316CC] dark:text-[#979797]"
+                  size={16}
+                />
               </a>
             </TableCell>
             <TableCell style={{ color: difficultyColors[exercise.difficulty] }}>
@@ -90,7 +93,10 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             </TableCell>
             <TableCell className="flex items-center justify-center">
               <a target="_blank" href={exercise.solution}>
-                <MonitorPlay strokeWidth={1.2} />
+                <MonitorPlay
+                  className="dark:text-[#F5F5F5]"
+                  strokeWidth={1.2}
+                />
               </a>
             </TableCell>
           </TableRow>

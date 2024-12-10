@@ -11,27 +11,47 @@ import {
   MenubarCheckboxItem,
   MenubarSeparator,
 } from "./ui/menubar";
+import { useSettingsStore } from "@/stores/useSettingsStore";
 
 export function Preferences() {
+  const theme = useSettingsStore((state) => state.theme);
+  const setTheme = useSettingsStore((state) => state.setTheme);
+
   return (
-    <Menubar className="h-fit shadow-[0_0_50px_rgba(0,0,0,0.25)]">
+    <Menubar className="animate-left-to-right h-fit dark:bg-[#2c2c2c] dark:shadow-[0_0_50px_rgba(0,0,0,1)] shadow-[0_0_50px_rgba(0,0,0,0.25)]">
       <MenubarMenu>
         <MenubarTrigger className="gap-2">
           <img className="w-6" src={borderlessLogo} alt="borderless logo" />
-          <ChevronDown size={13} color="black" />
+          <ChevronDown size={13} className="text-black dark:text-white" />
         </MenubarTrigger>
-        <MenubarContent sideOffset={14}>
+        <MenubarContent className="dark:bg-[#2c2c2c]" sideOffset={14}>
           <MenubarSub>
             <MenubarSubTrigger className="pl-8">Change Theme</MenubarSubTrigger>
-            <MenubarSubContent>
-              <MenubarCheckboxItem checked={true}>Light</MenubarCheckboxItem>
-              <MenubarCheckboxItem checked={true}>Dark</MenubarCheckboxItem>
-              <MenubarCheckboxItem checked={true}>System</MenubarCheckboxItem>
+            <MenubarSubContent className="dark:bg-[#2c2c2c]" sideOffset={10}>
+              <MenubarCheckboxItem
+                checked={theme === "light"}
+                onClick={() => setTheme("light")}
+              >
+                Light
+              </MenubarCheckboxItem>
+              <MenubarCheckboxItem
+                checked={theme === "dark"}
+                onClick={() => setTheme("dark")}
+              >
+                Dark
+              </MenubarCheckboxItem>
+              <MenubarCheckboxItem
+                checked={theme === "system"}
+                onClick={() => setTheme("system")}
+              >
+                System
+              </MenubarCheckboxItem>
             </MenubarSubContent>
           </MenubarSub>
-          <MenubarSeparator />
-          <MenubarCheckboxItem checked={false}>Drag items</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked={false}>Enable drag</MenubarCheckboxItem>
+          <MenubarSeparator className="dark:bg-[#444444]" />
+          <MenubarCheckboxItem checked={false}>
+            Enable dragging
+          </MenubarCheckboxItem>
           <MenubarCheckboxItem checked={false}>
             Enable zooming
           </MenubarCheckboxItem>
