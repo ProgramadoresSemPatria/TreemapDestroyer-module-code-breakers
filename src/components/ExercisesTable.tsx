@@ -83,7 +83,7 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
               >
                 {exercise.problem}
                 <ExternalLink
-                  className="text-[#5316CC] dark:text-[#979797]"
+                  className="text-[#5316CC] dark:text-[#979797] flex-shrink-0"
                   size={16}
                 />
               </a>
