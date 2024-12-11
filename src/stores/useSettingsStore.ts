@@ -16,7 +16,7 @@ export const useSettingsStore = create<ISettingsStore>()(
   persist(
     (set) =>
       ({
-        theme: "light",
+        theme: "system",
         isDraggable: false,
         enableZooming: true,
         panOnDrag: true,
