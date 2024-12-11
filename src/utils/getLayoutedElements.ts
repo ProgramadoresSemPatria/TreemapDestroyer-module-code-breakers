@@ -1,21 +1,16 @@
 import dagre from "@dagrejs/dagre";
 import { Edge, Node } from "@xyflow/react";
 
-const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
-
-const nodeWidth = 250;
-const nodeHeight = 100;
-
 export const getLayoutedElements = (
   nodes: Node[],
   edges: Edge[],
-  direction: "vertical" | "horizontal" = "vertical"
+  size: { width: number; height: number }
 ) => {
-  const isHorizontal = direction === "horizontal";
-  dagreGraph.setGraph({ rankdir: direction });
+  const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
+  dagreGraph.setGraph({ rankdir: "TB" });
 
   nodes.forEach((node: Node) => {
-    dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+    dagreGraph.setNode(node.id, { width: size.width, height: size.height });
   });
 
   edges.forEach((edge) => {
@@ -28,11 +23,11 @@ export const getLayoutedElements = (
     const nodeWithPosition = dagreGraph.node(node.id);
     const newNode = {
       ...node,
-      targetPosition: isHorizontal ? "left" : "top",
-      sourcePosition: isHorizontal ? "right" : "bottom",
+      targetPosition: "top",
+      sourcePosition: "bottom",
       position: {
-        x: nodeWithPosition.x - nodeWidth / 2,
-        y: nodeWithPosition.y - nodeHeight / 2,
+        x: nodeWithPosition.x - size.width / 2,
+        y: nodeWithPosition.y - size.height / 2,
       },
     };
 

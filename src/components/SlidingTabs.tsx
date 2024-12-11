@@ -1,5 +1,19 @@
+import { courseEdges } from "@/constants/courseEdges";
+import { courseNodes } from "@/constants/courseNodes";
+import { courseNodeSize, progressNodeSize } from "@/constants/nodeSizes";
+import { progressEdges } from "@/constants/progressEdges";
+import { progressNodes } from "@/constants/progressNodes";
+import { Edge, Node } from "@xyflow/react";
 import clsx from "clsx";
 import { useRef, useState, useEffect } from "react";
+
+interface ISlidingTabBarProps {
+  onLayout: (
+    nodes: Node[],
+    edges: Edge[],
+    size: { width: number; height: number }
+  ) => void;
+}
 
 const allTabs = [
   {
@@ -12,28 +26,40 @@ const allTabs = [
   },
 ];
 
-export const SlidingTabBar = () => {
+export const SlidingTabBar = ({ onLayout }: ISlidingTabBarProps) => {
   const tabsRef = useRef<(HTMLElement | null)[]>([]);
-  const [activeTabIndex, setActiveTabIndex] = useState<number | null>(0);
+  const [activeTabIndex, setActiveTabIndex] = useState<number | null>(null);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
+  const setTabPosition = (activeTabIndex: number) => {
+    const currentTab = tabsRef.current[activeTabIndex] as HTMLElement;
+    setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
+    setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
+  };
+
+  const changeNodes = (activeTabIndex: number) => {
+    const newNodes: Node[] = activeTabIndex === 0 ? progressNodes : courseNodes;
+    const newEdges: Edge[] = activeTabIndex === 0 ? progressEdges : courseEdges;
+    const size = activeTabIndex === 0 ? progressNodeSize : courseNodeSize;
+    onLayout(newNodes, newEdges, size);
+  };
+
+  const handleTabChange = (index: number) => {
+    setActiveTabIndex(index);
+    setTabPosition(index);
+    changeNodes(index);
+  };
+
   useEffect(() => {
-    if (activeTabIndex === null) {
-      return;
-    }
-
-    const setTabPosition = () => {
-      const currentTab = tabsRef.current[activeTabIndex] as HTMLElement;
-      setTabUnderlineLeft(currentTab?.offsetLeft ?? 0);
-      setTabUnderlineWidth(currentTab?.clientWidth ?? 0);
-    };
-
-    setTabPosition();
-  }, [activeTabIndex]);
+    setTabPosition(0);
+  }, []);
 
   return (
-    <div className="animate-from-bottom delay-300 relative mx-auto flex h-10 rounded-[0.25rem] border dark:border-white/20 bg-white dark:bg-neutral-800 px-1 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.25)] transition-all duration-300">
+    <div
+      className="animate-from-bottom relative mx-auto flex h-10 rounded-[0.25rem] border dark:border-white/20 bg-white dark:bg-neutral-800 px-1 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.25)] transition-all duration-300"
+      style={{ animationDelay: "0.5s" }}
+    >
       <span
         className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-sm py-1 transition-all duration-300"
         style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
@@ -51,7 +77,7 @@ export const SlidingTabBar = () => {
               "my-auto cursor-pointer select-none rounded-full px-4 text-center font-light dark:text-white text-sm transition-all duration-300",
               isActive && `text-white`
             )}
-            onClick={() => setActiveTabIndex(index)}
+            onClick={() => handleTabChange(index)}
           >
             {tab.name}
           </button>

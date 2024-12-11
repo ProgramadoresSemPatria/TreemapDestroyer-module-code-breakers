@@ -2,7 +2,7 @@ import { Node } from "@xyflow/react";
 
 const position = { x: 0, y: 0 };
 
-export const initialNodes: Node[] = [
+export const progressNodes: Node[] = [
   {
     id: "1",
     position,

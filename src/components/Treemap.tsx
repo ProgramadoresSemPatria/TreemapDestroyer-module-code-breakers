@@ -9,36 +9,61 @@ import {
   OnNodesChange,
   Panel,
   ReactFlow,
+  ReactFlowInstance,
 } from "@xyflow/react";
 
-import { initialNodes } from "../constants/initialNodes";
-import { initialEdges } from "../constants/initialEdges";
 import { ProgressNode } from "./ProgressNode";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Buttons } from "./Buttons";
 import { getLayoutedElements } from "@/utils/getLayoutedElements";
 import { Preferences } from "./Preferences";
 import { useSettingsStore } from "@/stores/useSettingsStore";
 import { SlidingTabBar } from "./SlidingTabs";
+import { CourseNode } from "./CourseNode";
+import { progressNodes } from "@/constants/progressNodes";
+import { progressEdges } from "@/constants/progressEdges";
+import { progressNodeSize } from "@/constants/nodeSizes";
 
 const nodeTypes: NodeTypes = {
   progressNode: ProgressNode,
+  courseNode: CourseNode,
 };
 
 const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  initialNodes,
-  initialEdges
+  progressNodes,
+  progressEdges,
+  progressNodeSize
 );
 
 export function Treemap() {
   const { theme, isDraggable, enableZooming, panOnDrag } = useSettingsStore();
+  const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
   const [nodes, setNodes] = useState<Node[]>(layoutedNodes);
-  const [edges] = useState<Edge[]>(layoutedEdges);
+  const [edges, setEdges] = useState<Edge[]>(layoutedEdges);
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nodes) => applyNodeChanges(changes, nodes)),
     [setNodes]
   );
+
+  const onLayout = (
+    nodes: Node[],
+    edges: Edge[],
+    size: { width: number; height: number }
+  ) => {
+    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+      nodes,
+      edges,
+      size
+    );
+
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+
+    setTimeout(() => {
+      reactFlowInstance.current?.fitView({ duration: 1000 });
+    }, 0);
+  };
 
   return (
     <div className="absolute w-screen h-screen">
@@ -65,6 +90,9 @@ export function Treemap() {
         zoomOnPinch={enableZooming}
         panOnDrag={panOnDrag}
         fitView
+        onInit={(instance) => {
+          reactFlowInstance.current = instance;
+        }}
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         <Panel position="bottom-left">
@@ -74,7 +102,7 @@ export function Treemap() {
           <Preferences />
         </Panel>
         <Panel position="bottom-right">
-          <SlidingTabBar />
+          <SlidingTabBar onLayout={onLayout} />
         </Panel>
       </ReactFlow>
     </div>

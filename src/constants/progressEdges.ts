@@ -1,6 +1,6 @@
 import { Edge } from "@xyflow/react";
 
-export const initialEdges: Edge[] = [
+export const progressEdges: Edge[] = [
   {
     id: "e1-2",
     source: "1",
