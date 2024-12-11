@@ -66,7 +66,7 @@ export function Treemap() {
   };
 
   return (
-    <div className="absolute w-screen h-screen">
+    <div className="absolute w-[100svw] h-[100svh]">
       <ReactFlow
         nodes={nodes}
         nodeTypes={nodeTypes}
