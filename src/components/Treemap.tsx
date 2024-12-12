@@ -65,6 +65,15 @@ export function Treemap() {
     }, 0);
   };
 
+  const getStrokeColor = () => {
+    if (theme === "system") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "#979797"
+        : "";
+    }
+    return theme === "dark" ? "#979797" : "";
+  };
+
   return (
     <div className="absolute w-[100svw] h-[100svh]">
       <ReactFlow
@@ -79,7 +88,7 @@ export function Treemap() {
           },
           style: {
             strokeWidth: 2,
-            stroke: theme === "dark" ? "#979797" : "",
+            stroke: getStrokeColor(),
           },
           type: "smoothstep",
         }}
