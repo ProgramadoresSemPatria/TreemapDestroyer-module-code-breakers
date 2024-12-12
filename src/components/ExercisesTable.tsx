@@ -69,8 +69,8 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             key={exercise.id}
             className={clsx("hover:bg-gray-100 transition-colors")}
           >
-            <TableCell className="flex items-center h-full">
-              <div className="h-full">
+            <TableCell>
+              <div>
                 <Checkbox
                   checked={doneExercisesId?.[exercise.id] || false}
                   onChange={() => changeStatus(exercise.id)}
@@ -85,7 +85,7 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
               >
                 {exercise.problem}
                 <ExternalLink
-                  className="text-[#5316CC] dark:text-[#979797] flex-shrink-0 inline-block ml-2 mb-1"
+                  className="text-[#5316CC] dark:text-[#9c9c9c] flex-shrink-0 inline-block ml-2 mb-1"
                   size={16}
                 />
               </a>
