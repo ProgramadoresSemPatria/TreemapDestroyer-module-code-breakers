@@ -92,6 +92,7 @@ export function Treemap() {
           },
           type: "smoothstep",
         }}
+        minZoom={0.2}
         colorMode={theme}
         nodesDraggable={isDraggable}
         zoomOnScroll={enableZooming}
