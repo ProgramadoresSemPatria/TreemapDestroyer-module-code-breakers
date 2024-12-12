@@ -46,6 +46,7 @@ export const SlidingTabBar = ({ onLayout }: ISlidingTabBarProps) => {
   };
 
   const handleTabChange = (index: number) => {
+    if (index === activeTabIndex) return;
     setActiveTabIndex(index);
     setTabPosition(index);
     changeNodes(index);
