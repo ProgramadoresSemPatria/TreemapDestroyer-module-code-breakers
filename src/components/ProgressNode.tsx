@@ -47,7 +47,7 @@ export function ProgressNode({ data }: NodeProps<ProgressNode>) {
           />
         </button>
       </DialogTrigger>
-      <DialogContent className="min-w-fit max-w-[90vw] max-h-[90vh] overflow-y-auto lg:w-[50rem] dark:bg-[#242424]">
+      <DialogContent className="overflow-y-auto min-w-full h-[100dvh] lg:min-w-fit lg:h-fit lg:w-[50rem] lg:max-w-[90vw] lg:max-h-[90vh] dark:bg-[#242424]">
         <DialogHeader className="gap-2">
           <DialogTitle className="dark:text-[#F5F5F5]">
             {data.label}

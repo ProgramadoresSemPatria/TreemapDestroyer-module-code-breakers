@@ -11,3 +11,17 @@ html {
     --radius: 0.5rem;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f2f4f6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}

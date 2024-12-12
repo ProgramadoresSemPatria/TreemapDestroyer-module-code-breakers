@@ -55,10 +55,12 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="text-center">Status</TableHead>
-          <TableHead>Problem</TableHead>
-          <TableHead>Difficulty</TableHead>
-          <TableHead className="text-center">Solution</TableHead>
+          <TableHead className="text-xs lg:text-sm">Status</TableHead>
+          <TableHead className="text-xs lg:text-sm">Problem</TableHead>
+          <TableHead className="hidden lg:table-cell">Difficulty</TableHead>
+          <TableHead className="text-xs lg:text-sm text-center">
+            Solution
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -67,8 +69,8 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             key={exercise.id}
             className={clsx("hover:bg-gray-100 transition-colors")}
           >
-            <TableCell className="flex justify-center items-center">
-              <div>
+            <TableCell className="flex items-center h-full">
+              <div className="h-full">
                 <Checkbox
                   checked={doneExercisesId?.[exercise.id] || false}
                   onChange={() => changeStatus(exercise.id)}
@@ -77,24 +79,27 @@ export function ExercisesTable({ exercises }: ExercisesTableProps) {
             </TableCell>
             <TableCell>
               <a
-                className="flex items-center gap-2 dark:text-[#F5F5F5]"
+                className="text-xs lg:text-sm dark:text-[#F5F5F5]"
                 target="_blank'"
                 href={exercise.link}
               >
                 {exercise.problem}
                 <ExternalLink
-                  className="text-[#5316CC] dark:text-[#979797] flex-shrink-0"
+                  className="text-[#5316CC] dark:text-[#979797] flex-shrink-0 inline-block ml-2 mb-1"
                   size={16}
                 />
               </a>
             </TableCell>
-            <TableCell style={{ color: difficultyColors[exercise.difficulty] }}>
+            <TableCell
+              style={{ color: difficultyColors[exercise.difficulty] }}
+              className="hidden lg:table-cell"
+            >
               {exercise.difficulty}
             </TableCell>
             <TableCell className="flex items-center justify-center">
               <a target="_blank" href={exercise.solution}>
                 <MonitorPlay
-                  className="dark:text-[#F5F5F5]"
+                  className="dark:text-[#F5F5F5] size-5"
                   strokeWidth={1.2}
                 />
               </a>
